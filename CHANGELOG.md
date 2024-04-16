@@ -14,6 +14,9 @@ N/A
 ### Added
 
 - Initial release
+- Ability to toggle indoor sun visibility
+- Ability to toggle a "hands-free" flashlight
+- Each feature is very configurable
 
 [1]: <https://keepachangelog.com/en/1.1.0/> "Keep a Changelog, 1.1.0"
 

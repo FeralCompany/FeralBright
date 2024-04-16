@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using FeralBright.Behaviors;
 using FeralCommon.Utils;
 using GameNetcodeStuff;
@@ -7,20 +8,23 @@ using UnityEngine;
 namespace FeralBright.Patches;
 
 [HarmonyPatch(typeof(PlayerControllerB))]
-public class PlayerControllerBPatches
+public static class PlayerControllerBPatches
 {
-    [HarmonyPatch(nameof(PlayerControllerB.Awake))]
+    [HarmonyPatch("Awake")]
     [HarmonyPostfix]
-    private static void PostFix_Awake(ref PlayerControllerB __instance, ref Transform ___playerEye)
+    private static void PostFix_Awake([SuppressMessage("ReSharper", "InconsistentNaming")] PlayerControllerB __instance)
     {
-        if (!PlayerUtil.IsLocalPlayer(__instance)) return;
+        __instance.StartCoroutine(Player.WhenLocalPlayerReady(player =>
+        {
+            if (player != __instance)
+                return;
 
-        var gameObject = new GameObject();
+            var newGameObject = new GameObject();
 
-        var transform = gameObject.transform;
-        transform.SetParent(___playerEye.transform);
-        transform.rotation = Quaternion.LookRotation(___playerEye.transform.forward);
-
-        gameObject.AddComponent<FeralFlashlight>();
+            var newTransform = newGameObject.transform;
+            newTransform.SetParent(player.playerEye.transform);
+            newTransform.rotation = Quaternion.LookRotation(player.playerEye.transform.forward);
+            newGameObject.AddComponent<FeralFlashlight>();
+        }));
     }
 }

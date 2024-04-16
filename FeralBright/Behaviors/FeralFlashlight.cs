@@ -8,7 +8,7 @@ public class FeralFlashlight : MonoBehaviour
 
     public void Awake()
     {
-        _light = GetComponent<Light>();
+        _light = gameObject.AddComponent<Light>();
         _light.type = LightType.Spot;
         _light.enabled = Toggles.Flashlight;
     }

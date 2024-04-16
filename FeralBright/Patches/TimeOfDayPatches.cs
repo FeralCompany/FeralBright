@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using FeralCommon.Utils;
 using HarmonyLib;
 using UnityEngine;
@@ -10,9 +11,9 @@ public class TimeOfDayPatches
 {
     private static readonly int SunAnimatorTimeOfDayHash = Animator.StringToHash("timeOfDay");
 
-    [HarmonyPatch(nameof(TimeOfDay.MoveTimeOfDay))]
+    [HarmonyPatch("MoveTimeOfDay")]
     [HarmonyPostfix]
-    private static void PostFix_MoveTimeOfDay(ref Animator ___sunAnimator)
+    private static void PostFix_MoveTimeOfDay([SuppressMessage("ReSharper", "InconsistentNaming")] ref Animator ___sunAnimator)
     {
         if (Config.Sun.EnablePositionOverride && ___sunAnimator)
             ___sunAnimator.SetFloat(SunAnimatorTimeOfDayHash, Config.Sun.PositionOverride);
@@ -20,10 +21,10 @@ public class TimeOfDayPatches
 
     [HarmonyPatch(nameof(TimeOfDay.SetInsideLightingDimness))]
     [HarmonyPostfix]
-    private static void PostFix_SetInsideLightingDimness(ref Light ___sunIndirect, ref HDAdditionalLightData ___indirectLightData)
+    private static void PostFix_SetInsideLightingDimness([SuppressMessage("ReSharper", "InconsistentNaming")] ref Light ___sunIndirect,
+        [SuppressMessage("ReSharper", "InconsistentNaming")] ref HDAdditionalLightData ___indirectLightData)
     {
-        if (!PlayerUtil.LocalPlayer().isInsideFactory || !Toggles.SunInside)
-            return;
+        if (!Player.LocalPlayer().isInsideFactory || !Toggles.SunInside) return;
 
         if (___sunIndirect)
         {

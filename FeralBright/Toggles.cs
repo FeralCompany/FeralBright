@@ -1,10 +1,9 @@
 using FeralCommon.Input;
-using UnityEngine.InputSystem;
 
 namespace FeralBright;
 
 public static class Toggles
 {
-    public static ButtonToggle Flashlight { get; } = ButtonToggle.Create(Key.F, "ToggleFlashlight", "Toggle \"hands-free\" flashlight");
-    public static ButtonToggle SunInside { get; } = ButtonToggle.Create(Key.T, "ToggleSunInside", "Toggle sun visibility within facility");
+    public static ButtonToggle Flashlight { get; } = new("ToggleFlashlight", "Toggle \"hands-free\" flashlight", "<keyboard>/f");
+    public static ButtonToggle SunInside { get; } = new("ToggleSunInside", "Toggle sun visibility within facility", "<keyboard>/t");
 }

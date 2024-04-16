@@ -1,23 +1,34 @@
 using BepInEx;
 using FeralBright.Patches;
-using FeralCommon.Plugin;
-using HarmonyLib;
+using FeralCommon;
+using FeralCommon.Utils;
+using LethalCompanyInputUtils.Api;
 
 namespace FeralBright;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+[BepInDependency(FeralCommon.MyPluginInfo.PLUGIN_GUID)]
+[BepInDependency(Compat.LethalConfigKey)]
+[BepInDependency(Compat.InputUtilsKey)]
 internal class FeralBrightPlugin : FeralPlugin
 {
-    private readonly Harmony _harmony = new(MyPluginInfo.PLUGIN_GUID);
-
     protected override void Load()
     {
         RegisterConfigs(typeof(Config));
         RegisterButtons(typeof(Toggles));
 
-        _harmony.PatchAll(typeof(PlayerControllerBPatches));
-        _harmony.PatchAll(typeof(TimeOfDayPatches));
+        var binder = new BinderWorkAround(this);
+        CompleteWorkAroundPartTwo(binder);
+
+        Harmony.PatchAll(typeof(PlayerControllerBPatches));
+        Harmony.PatchAll(typeof(TimeOfDayPatches));
     }
 
-    protected override void Enable() { }
+    private class BinderWorkAround(FeralPlugin plugin) : LcInputActions
+    {
+        public override void CreateInputActions(in InputActionMapBuilder builder)
+        {
+            plugin.CompleteWorkAroundPartOne(in builder);
+        }
+    }
 }

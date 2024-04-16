@@ -36,4 +36,4 @@ target = "LICENSE"
 communities = [ "lethal-company" ]
 
 [publish.categories]
-lethal-company = [ "bepinex", "mods", "client-side", "misc" ]
+lethal-company = [ "bepinex", "mods", "clientside", "misc" ]

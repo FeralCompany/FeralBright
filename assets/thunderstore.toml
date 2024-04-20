@@ -8,12 +8,14 @@ repository = "https://thunderstore.io"
 namespace = "FeralCompany"
 name = "FeralBright"
 description = "A simple plugin with various methods of lighting up the facility"
-websiteUrl = "https://github.com/FeralCompany/FeralBright"
+websiteUrl = "https://github.com/FeralCompany"
 containsNsfwContent = false
 
 [package.dependencies]
-FeralCompany-FeralCommon = "0.0.3"
 BepInEx-BepInExPack = "5.4.2100"
+FeralCompany-FeralCommon = "0.1.0"
+AinaVT-LethalConfig = "1.4.1"
+Rune580-LethalCompany_InputUtils = "0.7.4"
 
 [build]
 icon = "icon.png"
@@ -33,7 +35,7 @@ source = "../LICENSE"
 target = "LICENSE"
 
 [publish]
-communities = [ "lethal-company" ]
+communities = ["lethal-company"]
 
 [publish.categories]
-lethal-company = [ "bepinex", "mods", "clientside", "misc" ]
+lethal-company = ["bepinex", "mods", "clientside", "misc"]

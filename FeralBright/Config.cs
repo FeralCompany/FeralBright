@@ -108,9 +108,9 @@ public static class Config
                 The higher the value, the brighter the light will be.
                 """
             )
-            .WithDefaultValue(4F)
+            .WithDefaultValue(25F)
             .WithMin(0F)
-            .WithMax(10F)
+            .WithMax(100F)
             .WithStep(1F);
 
         public static readonly BoolConfig EnablePositionOverride = new BoolConfig("Sun", "Enable Position Override")

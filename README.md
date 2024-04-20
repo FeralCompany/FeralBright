@@ -6,9 +6,9 @@
 
 A simple plugin with various methods of lighting up the facility.
 
-Made as an alternative to, and inspired by, the [FullBright][1] plugin.
+Made as an alternative to, and inspired by, the [FullBright][FullBright] plugin.
 
-When configuring the color of the light, you can use any color picker you like. I personally use [this one][2].
+When configuring the color of the light, you can use any color picker you like. I personally use [this one][ColorPicker].
 
 Configuration is thoroughly explained in the configuration file itself.
 
@@ -21,20 +21,6 @@ Configuration is thoroughly explained in the configuration file itself.
   change the pitch and yaw of the light source.
     - This can be used to create various effects such as "headlamp" or "flashlight"-style lighting.
 
-## Integration
+[FullBright]: <https://thunderstore.io/c/lethal-company/p/OndysWorks/FullBright> "FullBright by OndysWorks"
 
-| Integration       | Description                                   | Required |
-|-------------------|-----------------------------------------------|----------|
-| [FeralCommon][3]  | A common library for all of my mods.          | Yes      |
-| [LethalConfig][4] | Allows you to edit the configuration in-game. | No       |
-| [InputUtils][5]   | Allows you to rebind keys in-game.            | No       |
-
-[1]: <https://thunderstore.io/c/lethal-company/p/OndysWorks/FullBright> "FullBright by OndysWorks"
-
-[2]: https://www.google.com/search?q=color+picker "Google Search: Color Picker"
-
-[3]: <https://thunderstore.io/c/lethal-company/p/FeralCompany/FeralCommon> "FeralCommon by Ferus"
-
-[4]: https://thunderstore.io/c/lethal-company/p/AinaVT/LethalConfig/ "LethalConfig by AinaVT"
-
-[5]: https://thunderstore.io/c/lethal-company/p/Rune580/LethalCompany_InputUtils/ "InputUtils by Rune580"
+[ColorPicker]: https://www.google.com/search?q=color+picker "Google Search: Color Picker"

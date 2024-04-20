@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using FeralBright.Behaviors;
 using FeralCommon.Utils;
 using GameNetcodeStuff;
@@ -10,21 +9,26 @@ namespace FeralBright.Patches;
 [HarmonyPatch(typeof(PlayerControllerB))]
 public static class PlayerControllerBPatches
 {
-    [HarmonyPatch("Awake")]
     [HarmonyPostfix]
-    private static void PostFix_Awake([SuppressMessage("ReSharper", "InconsistentNaming")] PlayerControllerB __instance)
+    [HarmonyPatch(nameof(PlayerControllerB.ConnectClientToPlayerObject))]
+    private static void PostFix_ConnectClientToPlayerObject(PlayerControllerB __instance)
     {
-        __instance.StartCoroutine(Player.WhenLocalPlayerReady(player =>
-        {
-            if (player != __instance)
-                return;
+        CreateInsideSun(__instance);
+        CreateFlashlight(__instance);
+    }
 
-            var newGameObject = new GameObject();
+    private static void CreateFlashlight(PlayerControllerB player)
+    {
+        var newGameObject = UnityTool.CreateRootGameObject("FeralBright_Flashlight");
+        newGameObject.transform.SetParent(player.playerEye.transform);
+        newGameObject.transform.rotation = Quaternion.LookRotation(player.playerEye.transform.forward);
+        newGameObject.AddComponent<FeralFlashlight>();
+    }
 
-            var newTransform = newGameObject.transform;
-            newTransform.SetParent(player.playerEye.transform);
-            newTransform.rotation = Quaternion.LookRotation(player.playerEye.transform.forward);
-            newGameObject.AddComponent<FeralFlashlight>();
-        }));
+    private static void CreateInsideSun(PlayerControllerB player)
+    {
+        var newGameObject = UnityTool.CreateRootGameObject("FeralBright_InsideSun");
+        newGameObject.transform.SetParent(player.playerEye.transform);
+        newGameObject.AddComponent<FeralBrightInsideSun>();
     }
 }

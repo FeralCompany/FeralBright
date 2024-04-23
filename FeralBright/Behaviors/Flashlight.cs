@@ -1,23 +1,27 @@
+using FeralCommon.Utils;
 using UnityEngine;
 
 namespace FeralBright.Behaviors;
 
-public class FeralFlashlight : MonoBehaviour
+public class Flashlight : MonoBehaviour
 {
-    private Light? _light;
+    private static Light _light = null!;
 
     public void Awake()
     {
-        _light = gameObject.AddComponent<Light>();
+        if (_light) Destroy(_light);
+
+        _light = new GameObject("FeralBright_Flashlight").AddComponent<Light>();
+        _light.transform.SetParent(Player.LocalPlayer().playerEye.transform);
+        _light.transform.rotation = Quaternion.LookRotation(Player.LocalPlayer().playerEye.transform.forward);
+
+        _light.cullingMask = Mask.Unused2;
         _light.type = LightType.Spot;
-        _light.enabled = Toggles.Flashlight;
     }
 
     public void Update()
     {
-        if (!_light) return;
-
-        _light!.enabled = Toggles.Flashlight;
+        _light.enabled = Toggles.Flashlight;
         _light.intensity = Config.Flashlight.Intensity;
         _light.range = Config.Flashlight.Range;
         _light.spotAngle = Config.Flashlight.Spread;

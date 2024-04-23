@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Nothing yet.
+### Changed
+
+- Better looking mod icon.
 
 ## Version [v1.0.0] (2024-04-19)
 

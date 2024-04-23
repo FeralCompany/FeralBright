@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Nothing, yet.
 
+## Version [v1.1.1] (2024-04-23)
+
+### Fixed
+
+- Use proper `FeralCommon` version in `thunderstore.toml`
+
 ## Version [v1.1.0] (2024-04-23)
 
 ### Changed

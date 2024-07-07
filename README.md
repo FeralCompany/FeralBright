@@ -1,5 +1,13 @@
 # FeralBright
 
+---
+
+# Deprecated
+
+## Please use [FeralCompany](https://thunderstore.io/c/lethal-company/p/Ferus/FeralCompany/) instead!
+
+---
+
 [![Build](https://img.shields.io/github/actions/workflow/status/FeralCompany/FeralBright/build.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/FeralCompany/FeralBright/actions/workflows/build.yml)
 [![Latest Version](https://img.shields.io/thunderstore/v/FeralCompany/FeralBright?style=for-the-badge&logo=thunderstore)](https://thunderstore.io/c/lethal-company/p/FeralCompany/FeralBright)
 [![Total Downloads](https://img.shields.io/thunderstore/dt/FeralCompany/FeralBright?style=for-the-badge&logo=thunderstore)](https://thunderstore.io/c/lethal-company/p/FeralCompany/FeralBright)
